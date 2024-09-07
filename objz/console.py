@@ -15,6 +15,11 @@ class Console:
 
     "Console"
 
+    out = None
+
+    def __init__(self, outer):
+        self.out = outer
+
     def announce(self, txt):
         "echo text"
 
@@ -23,7 +28,8 @@ class Console:
         while True:
             try:
                 evt = self.poll()
-                command(self, evt)
+                command(evt)
+                self.show(evt)
             except (KeyboardInterrupt, EOFError):
                 _thread.interrupt_main()
 
@@ -36,7 +42,8 @@ class Console:
 
     def raw(self, txt):
         "echo text."
-        print(txt)
+        if self.out:
+            self.out(txt)
 
     def show(self, evt):
         "show results."

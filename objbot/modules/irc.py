@@ -16,19 +16,17 @@ import time
 import _thread
 
 
-from objz.client  import Client, command
-from objz.command import Commands
+from objz.command import Commands, command
 from objz.default import Default
 from objw.disk    import sync
 from objr.errors  import later
+from objr.reactor import Reactor
 from objz.event   import Event
 from objw.find    import last
 from objz.fleet   import Fleet
 from objz.log     import Logging, debug
 from objr.thread  import launch
-
-
-from objx  import Object, edit, fmt, keys
+from objx.object  import Object, edit, fmt, keys
 
 
 Logging.filter = ["PING", "PONG", "PRIVMSG"]
@@ -162,12 +160,12 @@ class Output:
         return 0
 
 
-class IRC(Client, Output):
+class IRC(Reactor, Output):
 
     "IRC"
 
     def __init__(self):
-        Client.__init__(self)
+        Reactor.__init__(self)
         Output.__init__(self)
         self.buffer = []
         self.cfg = Config()
@@ -501,7 +499,7 @@ class IRC(Client, Output):
         self.events.connected.clear()
         self.events.joined.clear()
         launch(Output.out, self)
-        launch(Client.start, self)
+        launch(Reactor.start, self)
         launch(
                self.doconnect,
                self.cfg.server or "localhost",
@@ -517,7 +515,7 @@ class IRC(Client, Output):
         self.disconnect()
         self.dostop.set()
         self.oput(None, None)
-        Client.stop(self)
+        Reactor.stop(self)
 
     def wait(self):
         "wait for ready."

@@ -5,22 +5,24 @@
 "main"
 
 
-from .client  import Client, command
+from .client  import Client
+from .command import command
 from .event   import Event
 from .log     import Logging
 from .utils   import spl
 
 
+from objx.object import fmt
+
+
 def cmnd(txt, outer):
     "do a command using the provided output function."
-    if not txt:
-        return None
-    cli = Client(outer)
-    evn = Event()
-    evn.txt = txt
-    command(cli, evn)
-    evn.wait()
-    return evn
+    clt = Client(outer)
+    evt = Event()
+    evt.txt = txt
+    command(evt)
+    clt.show(evt)
+    return evt
 
 
 def enable(outer):
