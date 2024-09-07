@@ -8,11 +8,40 @@
 import os
 
 
-from objx         import search, update
+from objx         import fqn, search, update
 from objw.default import Default
 from objw.disk    import fetch
-from objw.utils   import fqn, fntime, strip
 from objw.workdir import long, store
+
+
+"utilities"
+
+
+def fntime(daystr):
+    "convert file name to it's saved time."
+    daystr = daystr.replace('_', ':')
+    datestr = ' '.join(daystr.split(os.sep)[-2:])
+    if '.' in datestr:
+        datestr, rest = datestr.rsplit('.', 1)
+    else:
+        rest = ''
+    timed = time.mktime(time.strptime(datestr, '%Y-%m-%d %H:%M:%S'))
+    if rest:
+        timed += float('.' + rest)
+    return timed
+
+
+def strip(pth, nmr=3):
+    "reduce to path with directory."
+    return os.sep.join(pth.split(os.sep)[-nmr:])
+
+
+"methods"
+
+
+def ident(obj):
+    "return an id for an object."
+    return os.path.join(fqn(obj), *str(datetime.datetime.now()).split())
 
 
 def last(obj, selector=None):
@@ -60,6 +89,9 @@ def find(mtc, selector=None, index=None, deleted=False):
         if index is not None and nrs != int(index):
             continue
         yield (fnm, obj)
+
+
+"interface"
 
 
 def __dir__():

@@ -18,19 +18,15 @@ import _thread
 
 from objt.errors  import later
 from objt.thread  import launch
+from objx.default import Default
 from objx.object  import Object, edit, fmt, keys
 from objw.disk    import sync
 from objw.find    import last
 from objz.client import Client, command
 from objz.command import Commands
-from objz.default import Default
 from objz.event   import Event
 from objz.fleet   import Fleet
-
-
-from objbot.log     import Logging, debug
-
-
+from objz.log     import Logging, debug
 
 
 Logging.filter = ["PING", "PONG", "PRIVMSG"]

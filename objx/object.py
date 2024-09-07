@@ -89,6 +89,14 @@ def fmt(obj, args=None, skip=None, plain=False):
     return txt.strip()
 
 
+def fqn(obj):
+    "return full qualified name of an object."
+    kin = str(type(obj)).split()[-1][1:-2]
+    if kin == "type":
+        kin = f"{obj.__module__}.{obj.__name__}"
+    return kin
+
+
 def items(obj):
     "return the items of an object."
     if isinstance(obj, type({})):
@@ -148,6 +156,7 @@ def __dir__():
         'construct',
         'edit',
         'fmt',
+        'fqn',
         'items',
         'keys',
         'match',

@@ -8,9 +8,7 @@ import time
 
 
 from objz.command import Commands
-
-
-from objbot.utils   import laps
+from objz.utils   import laps
 
 
 STARTTIME = time.time()

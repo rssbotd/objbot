@@ -5,6 +5,7 @@
 "disk"
 
 
+import datetime
 import os
 import pathlib
 import _thread
@@ -14,7 +15,6 @@ from objx         import update
 from objx.decoder import load
 from objx.encoder import dump
 from objw.workdir import store
-from objw.utils   import ident
 
 
 lock = _thread.allocate_lock()
@@ -28,6 +28,11 @@ def cdir(pth):
     "create directory."
     path = pathlib.Path(pth)
     path.parent.mkdir(parents=True, exist_ok=True)
+
+
+def ident(obj):
+    "return an id for an object."
+    return os.path.join(fqn(obj), *str(datetime.datetime.now()).split())
 
 
 "methods"

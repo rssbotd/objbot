@@ -16,17 +16,17 @@ import time
 sys.path.insert(0, os.getcwd())
 
 
+from objx.default import Default
 from objt.errors import Errors
 from objt.thread import launch
 from objz.console import Console
-from objz.default import Default
 from objz.parse   import parse
+from objz.log     import debug
+from objz.utils   import forever, modnames
 
 
 from objbot.config  import Config
-from objbot.log     import debug
 from objbot.modules import face
-from objbot.utils   import forever, modnames
 
 
 Cfg = Config()

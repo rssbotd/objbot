@@ -15,19 +15,20 @@ import termios
 sys.path.insert(0, os.getcwd())
 
 
+from objx  import Default, fmt
+
+
 from objw.workdir import Workdir
-from objx.object  import fmt
 from objt.errors  import errors
 from objz.client  import Client, command
 from objz.command import Commands
-from objz.default import Default
 from objz.event   import Event
 from objz.parse   import parse
+from objz.utils   import forever, modnames, wrap
 
 
 from objbot.config  import Config
 from objbot.modules import face
-from objbot.utils   import forever, modnames, wrap
 
 
 Cfg = Config()

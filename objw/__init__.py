@@ -5,9 +5,9 @@
 __doc__ = "%s" % __file__.split("/")[-2].upper()
 
 
-from . import disk, find, workdir
+from . import find, disk, workdir
 
 
-from .disk    import *
 from .find    import *
+from .disk    import *
 from .workdir import *

@@ -8,8 +8,8 @@
 import threading
 
 
-from .default import Default
-from .fleet   import Fleet
+from objx.default import Default
+from objz.fleet   import Fleet
 
 
 class Event(Default):

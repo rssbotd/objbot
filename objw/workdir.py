@@ -10,8 +10,8 @@ import os
 import pathlib
 
 
-from objx        import Object
-from objw.utils  import fqn
+from objx.default import Default
+from objx.object  import Object, fqn
 
 
 class Workdir:
