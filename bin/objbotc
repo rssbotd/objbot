@@ -24,7 +24,7 @@ from objbot.config  import Config
 from objbot.console import Console
 from objbot.default import Default
 from objbot.log     import debug
-from objbot.main    import cmnd, enable, init
+from objbot.main    import enable, init
 from objbot.modules import face
 from objbot.parse   import parse
 from objbot.utils   import forever, modnames
