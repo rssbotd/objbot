@@ -77,7 +77,7 @@ p.s.
 """
 
 
-from objbot.command import Commands
+from objz.command import Commands
 
 
 def req(event):

@@ -7,7 +7,9 @@
 import time
 
 
-from objbot.command import Commands
+from objz.command import Commands
+
+
 from objbot.utils   import laps
 
 

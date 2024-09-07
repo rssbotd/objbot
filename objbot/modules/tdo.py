@@ -11,9 +11,9 @@ import time
 from objx.object  import Object
 from objw.disk    import sync
 from objw.find    import find
+from objz.command import Commands
 
 
-from objbot.command import Commands
 from objbot.utils   import fntime, laps
 
 

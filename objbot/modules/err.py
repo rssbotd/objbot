@@ -5,9 +5,7 @@
 
 
 from objt.errors  import Errors
-
-
-from objbot.command import Commands
+from objz.command import Commands
 
 
 def err(event):

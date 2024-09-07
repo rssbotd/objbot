@@ -8,7 +8,7 @@
 import os
 
 
-from .default import Default
+from objz.default import Default
 
 
 class Config(Default):

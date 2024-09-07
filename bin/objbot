@@ -15,23 +15,26 @@ import termios
 sys.path.insert(0, os.getcwd())
 
 
+from objw.workdir import Workdir
 from objx.object  import fmt
 from objt.errors  import errors
+from objz.client  import Client, command
+from objz.command import Commands
+from objz.default import Default
+from objz.event   import Event
+from objz.parse   import parse
 
 
-from objbot.client  import Client, command
 from objbot.config  import Config
-from objbot.command import Commands
-from objbot.default import Default
-from objbot.event   import Event
-from objbot.main    import wrap
 from objbot.modules import face
-from objbot.parse   import parse
-from objbot.utils   import forever, modnames
+from objbot.utils   import forever, modnames, wrap
 
 
 Cfg = Config()
 Cfg.mod = ",".join(modnames(face))
+
+
+Workdir.wdr = Cfg.wdr
 
 
 def main():

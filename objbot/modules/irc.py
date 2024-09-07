@@ -21,16 +21,16 @@ from objt.thread  import launch
 from objx.object  import Object, edit, fmt, keys
 from objw.disk    import sync
 from objw.find    import last
+from objz.client import Client, command
+from objz.command import Commands
+from objz.default import Default
+from objz.event   import Event
+from objz.fleet   import Fleet
 
 
-from objbot.command import Commands
-from objbot.default import Default
-from objbot.event   import Event
-from objbot.fleet   import Fleet
 from objbot.log     import Logging, debug
 
 
-from objbot.client import Client, command
 
 
 Logging.filter = ["PING", "PONG", "PRIVMSG"]
@@ -198,7 +198,6 @@ class IRC(Client, Output):
         self.register('PRIVMSG', cb_privmsg)
         self.register('QUIT', cb_quit)
         self.register("366", cb_ready)
-        Fleet.register(self)
 
     def announce(self, txt):
         "announce on all channels."

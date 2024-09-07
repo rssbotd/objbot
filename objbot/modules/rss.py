@@ -25,11 +25,11 @@ from objt.thread   import launch
 from objx.object   import Object, construct, fmt, update
 from objw.disk     import sync
 from objw.find     import find, last
+from objz.command  import Commands
+from objz.default  import Default
+from objz.fleet    import Fleet
 
 
-from objbot.command  import Commands
-from objbot.default  import Default
-from objbot.fleet    import Fleet
 from objbot.log      import debug
 from objbot.utils    import fntime, laps, spl
 

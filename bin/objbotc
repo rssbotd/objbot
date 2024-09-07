@@ -18,15 +18,14 @@ sys.path.insert(0, os.getcwd())
 
 from objt.errors import Errors
 from objt.thread import launch
+from objz.console import Console
+from objz.default import Default
+from objz.parse   import parse
 
 
 from objbot.config  import Config
-from objbot.console import Console
-from objbot.default import Default
 from objbot.log     import debug
-from objbot.main    import enable, init
 from objbot.modules import face
-from objbot.parse   import parse
 from objbot.utils   import forever, modnames
 
 
@@ -34,11 +33,32 @@ Cfg = Config()
 Cfg.mod = "cmd,err,mod,thr"
 
 
-
 class Prompt(Console):
 
     def raw(self, txt):
         print(txt)
+
+
+def banner():
+    tme = time.ctime(time.time())
+    debug(f"{Cfg.name.upper()} since {tme}")
+
+
+def init(modstr, *pkgs, disable=None):
+    "scan modules for commands and classes"
+    thrs = []
+    for mod in spl(modstr):
+        if disable and mod in spl(disable):
+            continue
+        for pkg in pkgs:
+            modi = getattr(pkg, mod, None)
+            if not modi:
+                continue
+            if "init" not in dir(modi):
+                continue
+            launch(modi.init)
+            break
+    return thrs
 
 
 def wrap(func):
@@ -57,9 +77,6 @@ def wrap(func):
             termios.tcsetattr(sys.stdin.fileno(), termios.TCSADRAIN, old3)
 
 
-def banner():
-    tme = time.ctime(time.time())
-    debug(f"{Cfg.name.upper()} since {tme}")
 
 
 def main():

@@ -11,7 +11,9 @@ import time
 from objx.object  import Object, update
 
 
-from objbot.command import Commands
+from objz.command import Commands
+
+
 from objbot.utils   import laps
 
 

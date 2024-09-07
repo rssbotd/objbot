@@ -131,6 +131,15 @@ def strip(pth, nmr=3):
     return SEP.join(pth.split(SEP)[-nmr:])
 
 
+def wrap(func):
+    "catch exceptions"
+    try:
+        func()
+    except (KeyboardInterrupt, EOFError):
+        pass
+
+
+
 def __dir__():
     return (
         'cdir',
@@ -143,5 +152,6 @@ def __dir__():
         'privileges',
         'skip',
         'spl',
-        'strip'
+        'strip',
+        'wrap'
     )

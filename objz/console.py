@@ -27,6 +27,7 @@ class Console(Client):
         evt.type = "command"
         return evt
 
+
 def __dir__():
     return (
         'Console',
