@@ -7,21 +7,14 @@
 import _thread
 
 
+from .client  import Client
 from .command import command
 from .event   import Event
 
 
-class Console:
+class Console(Client):
 
     "Console"
-
-    out = None
-
-    def __init__(self, outer):
-        self.out = outer
-
-    def announce(self, txt):
-        "echo text"
 
     def loop(self):
         "proces events until interrupted."
@@ -39,16 +32,6 @@ class Console:
         evt.txt  = input("> ")
         evt.type = "command"
         return evt
-
-    def raw(self, txt):
-        "echo text."
-        if self.out:
-            self.out(txt)
-
-    def show(self, evt):
-        "show results."
-        for text in evt.result:
-            self.raw(text)
 
 
 def __dir__():

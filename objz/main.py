@@ -9,6 +9,7 @@ from .client  import Client
 from .command import command
 from .event   import Event
 from .log     import Logging
+from .parse   import parse
 from .utils   import spl
 
 

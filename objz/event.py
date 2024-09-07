@@ -5,9 +5,6 @@
 "event"
 
 
-import threading
-
-
 from .default import Default
 
 
@@ -16,10 +13,12 @@ class Event(Default):
     "Event"
 
     def __init__(self):
-        self.orig    = ""
-        self.result  = []
-        self.txt     = ""
-        self.type    = "command"
+        Default.__init__(self)
+        self.cmd    = ""
+        self.orig   = ""
+        self.result = []
+        self.txt    = ""
+        self.type   = "command"
 
     def reply(self, txt):
         "add text to the result"

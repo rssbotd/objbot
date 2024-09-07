@@ -5,6 +5,9 @@
 "commands"
 
 
+from .parse import parse
+
+
 class Commands:
 
     "Commands"
@@ -22,7 +25,7 @@ class Commands:
 
 def command(evt):
     "check for and run a command."
-    print(evt.cmd)
+    parse(evt)
     func = Commands.cmds.get(evt.cmd, None)
     if func:
         func(evt)
@@ -31,4 +34,5 @@ def command(evt):
 def __dir__():
     return (
         'Commands',
+        'command'
     )
