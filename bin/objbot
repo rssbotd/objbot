@@ -16,29 +16,36 @@ sys.path.insert(0, os.getcwd())
 
 
 from objx.object  import fmt
-from objz.console import Console
-from objz.command import Commands
-from objz.default import Default
-from objr.errors  import errors
-from objz.main    import cmnd, wrap
-from objz.parse   import parse
-from objz.utils   import forever, modnames
+from objt.errors  import errors
 
 
+from objbot.client  import Client, command
+from objbot.config  import Config
+from objbot.command import Commands
+from objbot.default import Default
+from objbot.event   import Event
+from objbot.main    import wrap
 from objbot.modules import face
+from objbot.parse   import parse
+from objbot.utils   import forever, modnames
 
 
-Cfg = Default()
+Cfg = Config()
 Cfg.mod = ",".join(modnames(face))
 
 
 def main():
     "main"
     parse(Cfg, " ".join(sys.argv[1:]))
+    clt = Client()
     if Cfg.txt:
-        cmnd(Cfg.otxt, print)
+        evt = Event()
+        evt.txt = Cfg.otxt
+        command(clt, evt)
+        for text in evt.result:
+            print(text)
 
 
 if __name__ == "__main__":
     wrap(main)
-    errors()
+    errors(print)

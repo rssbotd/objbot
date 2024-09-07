@@ -16,17 +16,21 @@ import time
 import _thread
 
 
-from objz.command import Commands, command
-from objz.default import Default
-from objw.disk    import sync
-from objr.errors  import later
-from objr.reactor import Reactor
-from objz.event   import Event
-from objw.find    import last
-from objz.fleet   import Fleet
-from objz.log     import Logging, debug
-from objr.thread  import launch
+from objt.errors  import later
+from objt.thread  import launch
 from objx.object  import Object, edit, fmt, keys
+from objw.disk    import sync
+from objw.find    import last
+
+
+from objbot.command import Commands
+from objbot.default import Default
+from objbot.event   import Event
+from objbot.fleet   import Fleet
+from objbot.log     import Logging, debug
+
+
+from objbot.client import Client, command
 
 
 Logging.filter = ["PING", "PONG", "PRIVMSG"]
@@ -38,7 +42,7 @@ def init():
     "initialize a irc bot."
     irc = IRC()
     irc.start()
-    irc.events.joined.wait()
+    irc.events.ready.wait()
     debug(f'started irc {fmt(irc.cfg, skip="password")}')
     return irc
 
@@ -160,12 +164,12 @@ class Output:
         return 0
 
 
-class IRC(Reactor, Output):
+class IRC(Client, Output):
 
     "IRC"
 
     def __init__(self):
-        Reactor.__init__(self)
+        Client.__init__(self)
         Output.__init__(self)
         self.buffer = []
         self.cfg = Config()
@@ -499,7 +503,7 @@ class IRC(Reactor, Output):
         self.events.connected.clear()
         self.events.joined.clear()
         launch(Output.out, self)
-        launch(Reactor.start, self)
+        launch(Client.start, self)
         launch(
                self.doconnect,
                self.cfg.server or "localhost",
@@ -515,7 +519,7 @@ class IRC(Reactor, Output):
         self.disconnect()
         self.dostop.set()
         self.oput(None, None)
-        Reactor.stop(self)
+        Client.stop(self)
 
     def wait(self):
         "wait for ready."

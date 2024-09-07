@@ -4,10 +4,14 @@
 "client"
 
 
+from objr.reactor import Reactor
+from objt.errors  import later
+from objx.object  import Object
+
+
 from .command import Commands
-from .object  import Object
+from .fleet   import Fleet
 from .parse   import parse
-from .reactor import Reactor
 
 
 class Client(Reactor):
@@ -15,12 +19,15 @@ class Client(Reactor):
     "Client"
 
     cache = Object()
-    out = None
 
     def __init__(self, outer=None):
         Reactor.__init__(self)
         self.register("command", command)
-        self.out = outer
+        Fleet.register(self)
+
+    def dosay(self, channel, txt):
+        "make say."
+        self.raw(txt)
 
     def say(self, _channel, txt):
         "echo on verbose."
@@ -28,24 +35,21 @@ class Client(Reactor):
 
     def raw(self, txt):
         "print to screen."
-        if self.out:
-            txt = txt.encode('utf-8', 'replace').decode()
-            self.out(txt)
-
-    def show(self, evt):
-        "show results into a channel."
-        for txt in evt.result:
-            self.say(evt.channel, txt)
+        raise NotImplementedError
 
 
 def command(bot, evt):
     "check for and run a command."
     parse(evt)
-    func = getattr(Commands.cmds, evt.cmd, None)
+    func = Commands.cmds.get(evt.cmd, None)
     if func:
-        func(evt)
-        bot.show(evt)
-    evt.ready()
+        try:
+            func(evt)
+        except Exceptions as ex:
+            later(ex)
+    if "ready" in dir(evt):
+        evt.display()
+        evt.ready()
 
 
 def __dir__():

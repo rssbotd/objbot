@@ -29,24 +29,13 @@ COPYRIGHT
 """
 
 
-from . import errors, reactor, repeater, thread, timer
+from . import reactor
 
 
-from .errors   import *
 from .reactor  import *
-from .repeater import *
-from .thread   import *
-from .timer    import *
 
 
 def __dir__():
     return (
-        'Errors',
-        'errors',
-        'later',
-        'launch'
         'Reactor',
-        'Repeater',
-        'Thread',
-        'Timer'
     )

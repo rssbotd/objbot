@@ -5,7 +5,9 @@
 
 
 from objx.object  import keys
-from objz.command import Commands
+
+
+from objbot.client import Commands
 
 
 def cmd(event):

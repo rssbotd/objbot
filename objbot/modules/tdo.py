@@ -8,12 +8,13 @@
 import time
 
 
-from objz.command import Commands
+from objx.object  import Object
 from objw.disk    import sync
 from objw.find    import find
-from objz.utils   import fntime, laps
 
-from objx  import Object
+
+from objbot.command import Commands
+from objbot.utils   import fntime, laps
 
 
 class NoDate(Exception):

@@ -54,10 +54,8 @@ class Thread(threading.Thread):
             self._result = func(*args)
         except Exception as ex:
             later(ex)
-            try:
+            if len(args) and "ready" in dir(args[0]):
                 args[0].ready()
-            except (IndexError, AttributeError):
-                pass
 
 
 def named(obj):

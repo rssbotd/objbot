@@ -10,7 +10,7 @@ import threading
 import _thread
 
 
-from .thread import launch
+from objt.thread import launch
 
 
 class Reactor:
@@ -26,7 +26,7 @@ class Reactor:
         "call callback based on event type."
         evt.orig = repr(self)
         func = self.cbs.get(evt.type, None)
-        if not func:
+        if not func and "ready" in dir(evt):
             evt.ready()
             return
         if "target" in dir(func) and func.target not in str(func).lower():

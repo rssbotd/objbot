@@ -4,8 +4,10 @@
 "show errors"
 
 
-from objz.command import Commands
-from objr.errors  import Errors
+from objt.errors  import Errors
+
+
+from objbot.command import Commands
 
 
 def err(event):

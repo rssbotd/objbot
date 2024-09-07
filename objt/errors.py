@@ -14,9 +14,8 @@ class Errors:
     "Errors"
 
     errors = []
-    out    = None
 
-    @staticmethod
+
     def format(exc):
         "format an exception"
         res = ""
@@ -26,22 +25,15 @@ class Errors:
                                                        exc,
                                                        exc.__traceback__
                                                       )
-                            )
+                           )
         for line in stream.readlines():
             res += line + "\n"
         return res
 
-    @staticmethod
-    def output(exc):
-        "check if output function is set."
-        if Errors.out:
-            Errors.out(Errors.format(exc))
 
-
-def errors():
-    "show exceptions"
-    for exc in Errors.errors:
-        Errors.output(exc)
+def errors(outer):
+   for exc in Errors.errors:
+        outer(Errors.format(exc))
 
 
 def later(exc):
@@ -54,5 +46,6 @@ def __dir__():
     return (
         'Errors',
         'errors',
+        'format',
         'later'
     )
