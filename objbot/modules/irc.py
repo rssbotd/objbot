@@ -18,7 +18,7 @@ import _thread
 
 from objz.client  import Client, command
 from objz.command import Commands
-from objx.default import Default
+from objz.default import Default
 from objw.disk    import sync
 from objr.errors  import later
 from objz.event   import Event

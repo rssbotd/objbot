@@ -141,22 +141,15 @@ def values(obj):
     return obj.__dict__.values()
 
 
-from .decoder import *
-from .default import Default
-from .encoder import *
-
 
 def __dir__():
     return (
-        'Default',
         'Object',
         'construct',
-        'dumps',
         'edit',
         'fmt',
         'items',
         'keys',
-        'loads',
         'match',
         'search',
         'update',

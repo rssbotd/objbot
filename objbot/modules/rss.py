@@ -21,7 +21,7 @@ from urllib.parse import quote_plus, urlencode
 
 
 from objz.command  import Commands
-from objx.default  import Default
+from objz.default  import Default
 from objw.disk     import sync
 from objw.find     import find, last
 from objz.fleet    import Fleet
@@ -31,7 +31,7 @@ from objr.thread   import launch
 from objz.utils    import fntime, laps, spl
 
 
-from objx import Default, Object, construct, fmt, update
+from objx import Object, construct, fmt, update
 
 
 def init():

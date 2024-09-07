@@ -15,14 +15,8 @@ import termios
 sys.path.insert(0, os.getcwd())
 
 
-from objx.default  import Default
-
-
-Cfg = Default()
-Cfg.mod = "cmd,err,mod,thr"
-
-
 from objz.console import Console
+from objz.default import Default
 from objr.errors  import errors
 from objz.main    import cmnd
 from objz.parse   import parse
@@ -30,6 +24,10 @@ from objz.utils   import forever, modnames
 
 
 from objbot.modules import face
+
+
+Cfg = Default()
+Cfg.mod = "cmd,err,mod,thr"
 
 
 def init(modstr, *pkgs, disable=None):
@@ -68,11 +66,10 @@ def wrap(func):
 def main():
     "main"
     parse(Cfg, " ".join(sys.argv[1:]))
-    csl = Console(print, input)
+    csl = Console()
     if "i" in Cfg.opts:
         Cfg.mod = ",".join(modnames(face))
         init(Cfg.mod, face)
-    csl.start()
     forever()
 
 
