@@ -1,0 +1,44 @@
+#!/usr/bin/env python3
+# This file is placed in the Public Domain.
+# pylint: disable=C0413,W0611
+
+
+"prompt"
+
+
+import os
+import readline
+import sys
+import termios
+
+
+sys.path.insert(0, os.getcwd())
+
+
+from objx.object  import fmt
+from objz.console import Console
+from objz.command import Commands
+from objz.default import Default
+from objr.errors  import errors
+from objz.main    import cmnd, wrap
+from objz.parse   import parse
+from objz.utils   import forever, modnames
+
+
+from objbot.modules import face
+
+
+Cfg = Default()
+Cfg.mod = ",".join(modnames(face))
+
+
+def main():
+    "main"
+    parse(Cfg, " ".join(sys.argv[1:]))
+    if Cfg.txt:
+        cmnd(Cfg.otxt, print)
+
+
+if __name__ == "__main__":
+    wrap(main)
+    errors()
