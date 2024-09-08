@@ -16,15 +16,10 @@ import time
 sys.path.insert(0, os.getcwd())
 
 
-from objx.default import Default
-from objt.errors  import Errors
-from objt.thread  import launch
-from objw.workdir import Workdir
-from objz.config  import Config
-from objz.console import Console
-from objz.parse   import parse
-from objz.log     import debug, enable
-from objz.main    import forever, initer, modnames, spl
+from objx import Default
+from objt import errors, launch
+from objz import Config, Console
+from objz import debug, enable, forever, initer, modnames, parse, spl
 
 
 from objbot.modules import face
@@ -80,6 +75,4 @@ def main():
 
 if __name__ == "__main__":
     wrap(main)
-    for exc in Errors.errors:
-        print(Errors.format(exc))
-    print("\nno errors")
+    errors(print)

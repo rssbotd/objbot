@@ -11,11 +11,9 @@ import os
 import sys
 
 
-from objt.errors  import errors
-from objw.workdir import Workdir
-from objz.config  import Config
-from objz.log     import enable
-from objz.main    import forever, initer, pidfile, privileges, wrap
+from objt import errors
+from objz import Config
+from objz import enable, forever, initer, pidfile, privileges, wrap
 
 
 from objbot.modules import face
