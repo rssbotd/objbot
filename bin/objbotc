@@ -23,6 +23,7 @@ from objw.workdir import Workdir
 from objz.console import Console
 from objz.parse   import parse
 from objz.log     import debug, enable
+from objz.main    import init
 from objz.utils   import forever, modnames, spl
 
 
@@ -46,23 +47,6 @@ class Prompt(Console):
 def banner():
     tme = time.ctime(time.time())
     debug(f"{Cfg.name.upper()} since {tme}")
-
-
-def init(modstr, *pkgs, disable=None):
-    "scan modules for commands and classes"
-    thrs = []
-    for mod in spl(modstr):
-        if disable and mod in spl(disable):
-            continue
-        for pkg in pkgs:
-            modi = getattr(pkg, mod, None)
-            if not modi:
-                continue
-            if "init" not in dir(modi):
-                continue
-            launch(modi.init)
-            break
-    return thrs
 
 
 def wrap(func):
