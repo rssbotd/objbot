@@ -16,17 +16,11 @@ import time
 import _thread
 
 
-from objt.errors  import later
-from objt.thread  import launch
-from objx.default import Default
-from objx.object  import Object, edit, fmt, keys
-from objw.disk    import sync
-from objw.find    import last
-from objz.client import Client, command
-from objz.command import Commands
-from objz.event   import Event
-from objz.fleet   import Fleet
-from objz.log     import Logging, debug
+from objx import Default, Object, edit, fmt, keys
+from objw import last, sync
+from objt import later, launch
+from objz import Client, Commands, Event, Fleet, Logging
+from objz import command, debug
 
 
 Logging.filter = ["PING", "PONG", "PRIVMSG"]

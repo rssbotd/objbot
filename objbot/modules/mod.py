@@ -7,7 +7,7 @@
 import os
 
 
-from objz.command import Commands
+from objz import Commands
 
 
 def mod(event):

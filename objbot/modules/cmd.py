@@ -4,8 +4,8 @@
 "list of commands"
 
 
-from objx.object  import keys
-from objz.client import Commands
+from objx import keys
+from objz import Commands
 
 
 def cmd(event):

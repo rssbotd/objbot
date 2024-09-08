@@ -77,7 +77,7 @@ p.s.
 """
 
 
-from objz.command import Commands
+from objz import Commands
 
 
 def req(event):

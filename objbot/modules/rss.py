@@ -20,16 +20,10 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import quote_plus, urlencode
 
 
-from objx.default  import Default
-from objt.repeater import Repeater
-from objt.thread   import launch
-from objx.object   import Object, construct, fmt, update
-from objw.disk     import sync
-from objw.find     import find, fntime, last
-from objz.command  import Commands
-from objz.fleet    import Fleet
-from objz.log      import debug
-from objz.main     import laps, spl
+from objx import Default, Object, construct, fmt, update
+from objw import find, fntime, last, sync
+from objt import Repeater, launch
+from objz import Commands, Fleet, debug, laps, spl
 
 
 def init():

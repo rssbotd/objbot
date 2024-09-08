@@ -8,11 +8,9 @@
 import time
 
 
-from objx.object  import Object
-from objw.disk    import sync
-from objw.find    import find, fntime
-from objz.command import Commands
-from objz.main    import laps
+from objx import Object
+from objw import find, sync, fntime
+from objz import Commands, laps
 
 
 class Log(Object):
