@@ -45,7 +45,7 @@ def command(bot, evt):
     if func:
         try:
             func(evt)
-        except Exceptions as ex:
+        except Exception as ex:
             later(ex)
     if "ready" in dir(evt):
         evt.display()

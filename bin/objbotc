@@ -17,12 +17,13 @@ sys.path.insert(0, os.getcwd())
 
 
 from objx.default import Default
-from objt.errors import Errors
-from objt.thread import launch
+from objt.errors  import Errors
+from objt.thread  import launch
+from objw.workdir import Workdir
 from objz.console import Console
 from objz.parse   import parse
-from objz.log     import debug
-from objz.utils   import forever, modnames
+from objz.log     import debug, enable
+from objz.utils   import forever, modnames, spl
 
 
 from objbot.config  import Config
@@ -31,6 +32,9 @@ from objbot.modules import face
 
 Cfg = Config()
 Cfg.mod = "cmd,err,mod,thr"
+
+
+Workdir.wdr = Cfg.wdr
 
 
 class Prompt(Console):

@@ -11,7 +11,7 @@ import pathlib
 import _thread
 
 
-from objx         import update
+from objx         import fqn, update
 from objx.decoder import load
 from objx.encoder import dump
 from objw.workdir import store

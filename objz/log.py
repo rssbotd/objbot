@@ -10,7 +10,7 @@ class Logging:
     "Logging"
 
     filter = []
-    out    = None
+    out = None
 
 
 def debug(txt):
@@ -22,8 +22,13 @@ def debug(txt):
         Logging.out(txt)
 
 
+def enable(outer):
+    Logging.out = outer
+
+
 def __dir__():
     return (
         'Logging',
-        'debug'
+        'debug',
+        'enable'
     )
