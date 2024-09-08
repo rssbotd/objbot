@@ -11,7 +11,43 @@ import time
 import _thread
 
 
-from objt.thread import launch
+from objw import Workdir
+from objx import Default
+from objt import launch
+
+
+class Config(Default):
+
+    "Config"
+
+    def __init__(self, name):
+        Default.__init__(self)
+        self.name    = name
+        self.wdr     = os.path.expanduser(f"~/.{name}")
+        self.pidfile = os.path.join(self.wdr, f"{name}.pid")
+        Workdir.wdr  = self.wdr
+
+
+class Logging:
+
+    "Logging"
+
+    filter = []
+    out = None
+
+
+def debug(txt):
+    "print to console."
+    for skp in Logging.filter:
+        if skp in txt:
+            return
+    if Logging.out:
+        Logging.out(txt)
+
+
+def enable(outer):
+    Logging.out = outer
+
 
 
 def forever():
@@ -124,6 +160,10 @@ def wrap(func):
 
 def __dir__():
     return (
+        "Config",
+        'Logging',
+        'debug',
+        'enable'
         'forever',
         'initer',
         'laps',

@@ -19,6 +19,7 @@ sys.path.insert(0, os.getcwd())
 
 
 from objr import *
+from objt import *
 from objw import *
 from objx import *
 from objz import *
@@ -153,7 +154,7 @@ if __name__ == "__main__":
         profile.runctx(main.__code__, globals(), locals())
     else:
         wrapped(main)
-    errors()
+    errors(print)
     if "v" in Cfg.opts:
         endtime = time.time()
         lap = laps(endtime-STARTTIME)
