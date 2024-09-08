@@ -1,0 +1,43 @@
+#!/usr/bin/env python3
+# This file is placed in the Public Domain.
+# pylint: disable=C0413,W0212
+
+
+"daemon"
+
+
+import getpass
+import os
+import sys
+
+
+from objt.errors  import errors
+from objw.workdir import Workdir
+from objz.log     import enable
+from objz.main    import init
+from objz.utils   import forever, pidfile, privileges, wrap
+
+
+from objbot.config  import Config
+from objbot.modules import face
+
+
+Cfg = Config()
+Cfg.mod = "cmd,err,mod,irc,rss,thr"
+Cfg.user = getpass.getuser()
+
+
+Workdir.wdr = Cfg.wdr
+
+
+def main():
+    "main"
+    privileges(Cfg.user)
+    pidfile(Cfg.pidfile)
+    init(Cfg.mod, face)
+    forever()
+
+
+if __name__ == "__main__":
+    wrap(main)
+    errors(print)
