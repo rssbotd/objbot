@@ -12,7 +12,7 @@ from objx.object  import Object
 from objw.disk    import sync
 from objw.find    import find, fntime
 from objz.command import Commands
-from objz.utils import laps
+from objz.main    import laps
 
 
 class NoDate(Exception):

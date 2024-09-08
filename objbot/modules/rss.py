@@ -29,7 +29,7 @@ from objw.find     import find, fntime, last
 from objz.command  import Commands
 from objz.fleet    import Fleet
 from objz.log      import debug
-from objz.utils    import laps, spl
+from objz.main     import laps, spl
 
 
 def init():

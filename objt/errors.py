@@ -46,6 +46,5 @@ def __dir__():
     return (
         'Errors',
         'errors',
-        'format',
         'later'
     )

@@ -6,6 +6,7 @@
 "prompt"
 
 
+import getpass
 import os
 import readline
 import sys
@@ -18,28 +19,45 @@ sys.path.insert(0, os.getcwd())
 from objx  import Default, fmt
 
 
-from objw.workdir import Workdir
-from objt.errors  import errors
-from objz.client  import Client, command
-from objz.command import Commands
-from objz.event   import Event
-from objz.parse   import parse
-from objz.utils   import forever, modnames, wrap
+from objt import errors
+from objz import Client, Commands, Config, Event
+from objz import command, forever, modnames, parse, wrap
 
 
-from objbot.config  import Config
 from objbot.modules import face
 
 
-Cfg = Config()
+Cfg = Config("objbot")
 Cfg.mod = ",".join(modnames(face))
 
 
-Workdir.wdr = Cfg.wdr
+
+TXT = """[Unit]
+Description=%s
+After=network-online.target
+
+[Service]
+Type=simple
+User=%s
+Group=%s
+ExecStart=/home/%s/.local/bin/objbots
+
+[Install]
+WantedBy=multi-user.target"""
+
+
+def srv(event):
+    "create service file (pipx)."
+    if event.args:
+        name = event.args[0]
+    else:
+        name  = getpass.getuser()
+    event.reply(TXT % (Cfg.name.upper(), name, name, name))
 
 
 def main():
     "main"
+    Commands.add(srv)
     parse(Cfg, " ".join(sys.argv[1:]))
     clt = Client()
     if Cfg.txt:

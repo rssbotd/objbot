@@ -20,22 +20,18 @@ from objx.default import Default
 from objt.errors  import Errors
 from objt.thread  import launch
 from objw.workdir import Workdir
+from objz.config  import Config
 from objz.console import Console
 from objz.parse   import parse
 from objz.log     import debug, enable
-from objz.main    import init
-from objz.utils   import forever, modnames, spl
+from objz.main    import forever, initer, modnames, spl
 
 
-from objbot.config  import Config
 from objbot.modules import face
 
 
-Cfg = Config()
+Cfg = Config("objbot")
 Cfg.mod = "cmd,err,mod,thr"
-
-
-Workdir.wdr = Cfg.wdr
 
 
 class Prompt(Console):

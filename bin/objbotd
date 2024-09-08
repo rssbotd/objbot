@@ -13,21 +13,17 @@ import sys
 
 from objt.errors  import errors
 from objw.workdir import Workdir
+from objz.config  import Config
 from objz.log     import enable
-from objz.main    import init
-from objz.utils   import forever, pidfile, privileges, wrap
+from objz.main    import forever, initer, pidfile, privileges, wrap
 
 
-from objbot.config  import Config
 from objbot.modules import face
 
 
-Cfg = Config()
+Cfg = Config("objbot")
 Cfg.mod = "cmd,err,mod,irc,rss,thr"
 Cfg.user = getpass.getuser()
-
-
-Workdir.wdr = Cfg.wdr
 
 
 def daemon(verbose=False):
@@ -57,7 +53,7 @@ def main():
     daemon()
     privileges(Cfg.user)
     pidfile(Cfg.pidfile)
-    init(Cfg.mod, face)
+    initer(Cfg.mod, face)
     forever()
 
 

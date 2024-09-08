@@ -10,7 +10,7 @@ import time
 
 from objx.object  import Object, update
 from objz.command import Commands
-from objz.utils   import laps
+from objz.main    import laps
 
 
 STARTTIME = time.time()
