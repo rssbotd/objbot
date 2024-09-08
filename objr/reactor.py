@@ -10,7 +10,7 @@ import threading
 import _thread
 
 
-from objt.thread import launch
+from objt import launch
 
 
 class Reactor:

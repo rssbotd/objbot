@@ -9,9 +9,11 @@ import os
 import time
 
 
-from objx         import Default, fqn, search, update
-from objw.disk    import fetch
-from objw.workdir import long, store
+from objx import Default, fqn, search, update
+
+
+from .disk    import fetch
+from .workdir import long, store
 
 
 "utilities"

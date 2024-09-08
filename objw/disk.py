@@ -11,10 +11,10 @@ import pathlib
 import _thread
 
 
-from objx         import fqn, update
-from objx.decoder import load
-from objx.encoder import dump
-from objw.workdir import store
+from objx import dump, fqn, load, update
+
+
+from .workdir import store
 
 
 lock = _thread.allocate_lock()

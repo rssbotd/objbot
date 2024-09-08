@@ -36,7 +36,7 @@ class Prompt(Console):
 
 
 def banner():
-    tme = time.ctime(time.time())
+    tme = time.ctime(time.time()).replace("  ", " ")
     debug(f"{Cfg.name.upper()} since {tme}")
 
 
