@@ -65,7 +65,7 @@ def main():
     "main"
     Commands.add(srv)
     parse(Cfg, " ".join(sys.argv[1:]))
-    clt = Client()
+    clt = CLI()
     if Cfg.txt:
         evt = Event()
         evt.txt = Cfg.otxt
