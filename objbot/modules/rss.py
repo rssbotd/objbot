@@ -20,10 +20,10 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import quote_plus, urlencode
 
 
-from objx import Default, Object, construct, fmt, update
+from objx import Broker, Default, Object, construct, fmt, update
 from objw import find, fntime, last, sync
 from objt import Repeater, launch
-from objz import Commands, Fleet, debug, laps, spl
+from objz import Commands, debug, laps, spl
 
 
 def init():
@@ -133,7 +133,9 @@ class Fetcher(Object):
             txt = f'[{feedname}] '
         for obj in result:
             txt2 = txt + self.display(obj)
-            Fleet.announce(txt2.rstrip())
+            for bot in Broker.objs:
+                if "announce" in dir(bot):
+                    bot.announce(txt2.rstrip())
         return counter
 
     def run(self, silent=False):

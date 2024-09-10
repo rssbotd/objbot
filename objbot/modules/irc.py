@@ -16,10 +16,10 @@ import time
 import _thread
 
 
-from objx import Default, Object, edit, fmt, keys
+from objx import Broker, Default, Object, edit, fmt, keys
 from objw import last, sync
 from objt import later, launch
-from objz import Client, Commands, Event, Fleet, Logging
+from objz import Client, Commands, Event, Logging
 from objz import command, debug
 
 
@@ -624,7 +624,7 @@ def mre(event):
     if not event.channel:
         event.reply('channel is not set.')
         return
-    bot = Fleet.get(event.orig)
+    bot = Broker.get(event.orig)
     if 'cache' not in dir(bot):
         event.reply('bot is missing cache')
         return
