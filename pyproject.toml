@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "objbot"
 description = "objects bot"
-version = "100"
+version = "101"
 authors = [
     {name = "Bart Thate", email = "rssbotd@gmail.com" },
 ]
