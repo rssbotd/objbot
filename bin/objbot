@@ -16,7 +16,7 @@ import termios
 sys.path.insert(0, os.getcwd())
 
 
-from objx  import Default, fmt
+from objx import Default, fmt
 
 
 from objt import errors
@@ -44,6 +44,12 @@ ExecStart=/home/%s/.local/bin/objbots
 
 [Install]
 WantedBy=multi-user.target"""
+
+
+class CLI(Client):
+
+    def raw(self, txt):
+        print(txt)
 
 
 def srv(event):
