@@ -8,4 +8,4 @@ import setuptools
 
 
 if __name__ == "__main__":
-    setuptools.setup(scripts=["bin/objbot"])
+    setuptools.setup(scripts=["bin/objbot", "bin/objbotc" , "bin/objbotd", "bin/objbots"])
