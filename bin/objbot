@@ -31,25 +31,14 @@ Cfg = Config("objbot")
 Cfg.mod = ",".join(modnames(face))
 
 
-
-TXT = """[Unit]
-Description=%s
-After=network-online.target
-
-[Service]
-Type=simple
-User=%s
-Group=%s
-ExecStart=/home/%s/.local/bin/objbots
-
-[Install]
-WantedBy=multi-user.target"""
-
-
 class CLI(Client):
+
+    def __init__(self):
+        Client.__init__(self)
 
     def raw(self, txt):
         print(txt)
+        sys.stdout.flush()
 
 
 def srv(event):
@@ -70,10 +59,23 @@ def main():
         evt = Event()
         evt.txt = Cfg.otxt
         command(clt, evt)
-        for text in evt.result:
-            print(text)
+
+
+TXT = """[Unit]
+Description=%s
+After=network-online.target
+
+[Service]
+Type=simple
+User=%s
+Group=%s
+ExecStart=/home/%s/.local/bin/objbots
+
+[Install]
+WantedBy=multi-user.target"""
 
 
 if __name__ == "__main__":
     wrap(main)
     errors(print)
+
