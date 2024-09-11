@@ -16,11 +16,12 @@ import time
 sys.path.insert(0, os.getcwd())
 
 
-from objbot.client  import Client
-from objbot.default import Default
+from objbot.broker  import Broker
+from objbot.command import command
 from objbot.main    import Config, debug, enable, forever, initer, modnames
 from objbot.main    import parse, spl
-from objbot.reactor import errors
+from objbot.object  import Default
+from objbot.reactor import Client, errors
 from objbot.thread  import launch
 from objbot.modules import face
 
@@ -47,6 +48,11 @@ class Event(Default):
 class Console(Client):
 
     "Console"
+
+    def __init__(self):
+        Client.__init__(self)
+        Broker.register(self)
+        self.register("command", command)
 
     def poll(self):
         "poll console and create event."

@@ -1,5 +1,5 @@
 # This file is placed in the Public Domain.
-# pylint: disable=C,I,R
+# pylint: disable=R0903,R0911,W0105
 
 
 "a clean namespace"
@@ -30,6 +30,13 @@ class Object:
     def __str__(self):
         return str(self.__dict__)
 
+
+class Default(Object):
+
+    "Default"
+
+    def __getattr__(self, key):
+        return self.__dict__.get(key, "")
 
 "decoder"
 
@@ -252,6 +259,7 @@ def values(obj):
 
 def __dir__():
     return (
+        'Default',
         'Object',
         'construct',
         'dump',

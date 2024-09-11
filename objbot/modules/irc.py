@@ -17,11 +17,10 @@ import _thread
 
 
 from ..broker  import Broker
-from ..default import Default
-from ..object  import Object, edit, fmt, keys
+from ..object  import Default, Object, edit, fmt, keys
 from ..workdir import last, sync
 from ..thread  import later, launch
-from ..client  import Client
+from ..reactor import Client
 from ..command import Commands, command
 from ..main    import Logging, debug, parse
 

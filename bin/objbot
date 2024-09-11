@@ -16,12 +16,11 @@ import termios
 sys.path.insert(0, os.getcwd())
 
 
-from objbot.default import Default
-from objbot.client  import Client
+from objbot.broker  import Broker
 from objbot.command import Commands, command
 from objbot.main    import Config, forever, modnames, parse, wrap
-from objbot.object  import fmt
-from objbot.reactor import errors
+from objbot.object  import Default, fmt
+from objbot.reactor import Client, errors
 from objbot.modules import face
 
 
@@ -48,6 +47,8 @@ class CLI(Client):
 
     def __init__(self):
         Client.__init__(self)
+        Broker.register(self)
+        self.register("command", command)
 
     def raw(self, txt):
         print(txt)
@@ -92,4 +93,3 @@ WantedBy=multi-user.target"""
 if __name__ == "__main__":
     wrap(main)
     errors(print)
-

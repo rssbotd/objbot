@@ -13,7 +13,7 @@ import _thread
 
 
 from .workdir import Workdir
-from .default import Default
+from .object  import Default
 from .thread  import launch
 
 
