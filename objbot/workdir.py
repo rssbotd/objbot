@@ -1,26 +1,22 @@
 # This file is placed in the Public Domain.
-# pylint: disable=C,I,R
+# pylint: disable=R0903,W0105
 
 
 "workdir"
 
 
 import datetime
-import os
 import time
 import os
 import pathlib
 import _thread
 
 
-from .object import Object, dump, fqn, load, search, update
+from .object import Default, dump, fqn, load, search, update
 
 
 lock = _thread.allocate_lock()
 disklock = _thread.allocate_lock()
-
-
-from .object import fqn
 
 
 class Workdir:
@@ -87,7 +83,7 @@ def find(mtc, selector=None, index=None, deleted=False):
     clz = long(mtc)
     nrs = -1
     for fnm in sorted(fns(clz), key=fntime):
-        obj = Object()
+        obj = Default()
         fetch(obj, fnm)
         if not deleted and '__deleted__' in obj and obj.__deleted__:
             continue
@@ -140,11 +136,6 @@ def fetch(obj, pth):
         pth2 = store(pth)
         read(obj, pth2)
         return os.sep.join(pth.split(os.sep)[-3:])
-
-
-def ident(obj):
-    "return an id for an object."
-    return os.path.join(fqn(obj), *str(datetime.datetime.now()).split())
 
 
 def last(obj, selector=None):

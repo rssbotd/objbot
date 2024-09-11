@@ -1,5 +1,5 @@
 # This file is placed in the Public Domain.
-# pylint: disable=R0903,R0911,W0105
+# pylint: disable=R0902,R0903,R0911,W0105
 
 
 "a clean namespace"
@@ -37,6 +37,7 @@ class Default(Object):
 
     def __getattr__(self, key):
         return self.__dict__.get(key, "")
+
 
 "decoder"
 

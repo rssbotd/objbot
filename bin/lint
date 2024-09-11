@@ -15,6 +15,8 @@ NAME = "otpcr"
 def popen(txt):
     "run text in popen."
     for line in os.popen(txt).readlines():
+        if not line.strip() or line.startswith("Your") or line.startswith("---"):
+            continue 
         print(line.rstrip())
         sys.stdout.flush()
 
