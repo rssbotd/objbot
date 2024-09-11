@@ -16,12 +16,12 @@ import time
 sys.path.insert(0, os.getcwd())
 
 
-from objx import Default
-from objt import errors, launch
-from objz import Config, Console
-from objz import debug, enable, forever, initer, modnames, parse, spl
-
-
+from objbot.client  import Client
+from objbot.default import Default
+from objbot.main    import Config, debug, enable, forever, initer, modnames
+from objbot.main    import parse, spl
+from objbot.reactor import errors
+from objbot.thread  import launch
 from objbot.modules import face
 
 
@@ -29,7 +29,32 @@ Cfg = Config("objbot")
 Cfg.mod = "cmd,err,mod,thr"
 
 
-class Prompt(Console):
+class Event(Default):
+
+    "Event"
+
+    def __init__(self):
+        Default.__init__(self)
+        self.orig    = ""
+        self.result  = []
+        self.txt     = ""
+
+    def reply(self, txt):
+        "add text to the result"
+        self.result.append(txt)
+
+
+class Console(Client):
+
+    "Console"
+
+    def poll(self):
+        "poll console and create event."
+        evt      = Event()
+        evt.txt  = input("> ")
+        evt.type = "command"
+        parse(evt)
+        return evt
 
     def raw(self, txt):
         print(txt)
@@ -56,8 +81,6 @@ def wrap(func):
             termios.tcsetattr(sys.stdin.fileno(), termios.TCSADRAIN, old3)
 
 
-
-
 def main():
     "main"
     parse(Cfg, " ".join(sys.argv[1:]))
@@ -68,9 +91,8 @@ def main():
         Cfg.mod = ",".join(modnames(face))
         for thr in initer(Cfg.mod, face):
             thr.join()
-    csl = Prompt()
+    csl = Console()
     csl.start()
-    forever()
 
 
 if __name__ == "__main__":

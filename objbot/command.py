@@ -5,8 +5,10 @@
 "commands"
 
 
+import time
+
+
 from .thread import later
-from .parser import parse
 
 
 class Commands:
@@ -26,7 +28,6 @@ class Commands:
 
 def command(bot, evt):
     "check for and run a command."
-    parse(evt)
     func = Commands.cmds.get(evt.cmd, None)
     if func:
         try:
@@ -34,6 +35,7 @@ def command(bot, evt):
             bot.display(evt)
         except Exception as ex:
             later(ex)
+            time.sleep(1)
 
 
 def __dir__():

@@ -87,7 +87,7 @@ def find(mtc, selector=None, index=None, deleted=False):
     clz = long(mtc)
     nrs = -1
     for fnm in sorted(fns(clz), key=fntime):
-        obj = Default()
+        obj = Object()
         fetch(obj, fnm)
         if not deleted and '__deleted__' in obj and obj.__deleted__:
             continue

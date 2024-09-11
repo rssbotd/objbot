@@ -23,7 +23,7 @@ from ..workdir import last, sync
 from ..thread  import later, launch
 from ..client  import Client
 from ..command import Commands, command
-from ..main    import Logging, debug
+from ..main    import Logging, debug, parse
 
 
 Logging.filter = ["PING", "PONG", "PRIVMSG"]
@@ -606,6 +606,7 @@ def cb_privmsg(bot, evt):
         if evt.txt:
             evt.txt = evt.txt[0].lower() + evt.txt[1:]
         debug(f"command from {evt.origin}: {evt.txt}")
+        parse(evt)
         command(bot, evt)
 
 

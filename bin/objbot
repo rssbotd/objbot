@@ -16,19 +16,32 @@ import termios
 sys.path.insert(0, os.getcwd())
 
 
-from objx import Default, fmt
-
-
-from objt import errors
-from objz import Client, Commands, Config, Event
-from objz import command, forever, modnames, parse, wrap
-
-
+from objbot.default import Default
+from objbot.client  import Client
+from objbot.command import Commands, command
+from objbot.main    import Config, forever, modnames, parse, wrap
+from objbot.object  import fmt
+from objbot.reactor import errors
 from objbot.modules import face
 
 
 Cfg = Config("objbot")
 Cfg.mod = ",".join(modnames(face))
+
+
+class Event(Default):
+
+    "Event"
+
+    def __init__(self):
+        Default.__init__(self)
+        self.orig    = ""
+        self.result  = []
+        self.txt     = ""
+
+    def reply(self, txt):
+        "add text to the result"
+        self.result.append(txt)
 
 
 class CLI(Client):
@@ -58,6 +71,7 @@ def main():
     if Cfg.txt:
         evt = Event()
         evt.txt = Cfg.otxt
+        parse(evt)
         command(clt, evt)
 
 
