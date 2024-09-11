@@ -48,7 +48,17 @@ class Timer:
             self.timer.cancel()
 
 
+class Repeater(Timer):
+
+    "Repeater"
+
+    def run(self):
+        launch(self.start)
+        super().run()
+
+
 def __dir__():
     return (
-        'Timer',
+        'Repeater',
+        'Timer'
     )

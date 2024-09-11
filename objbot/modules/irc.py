@@ -16,11 +16,14 @@ import time
 import _thread
 
 
-from objx import Broker, Default, Object, edit, fmt, keys
-from objw import last, sync
-from objt import later, launch
-from objz import Client, Commands, Event, Logging
-from objz import command, debug
+from ..broker  import Broker
+from ..default import Default
+from ..object  import Object, edit, fmt, keys
+from ..workdir import last, sync
+from ..thread  import later, launch
+from ..client  import Client
+from ..command import Commands, command
+from ..main    import Logging, debug
 
 
 Logging.filter = ["PING", "PONG", "PRIVMSG"]
@@ -65,6 +68,21 @@ class Config(Default):
         self.realname = self.realname or Config.realname
         self.server = self.server or Config.server
         self.username = self.username or Config.username
+
+
+class Event(Default):
+
+    "Event"
+
+    def __init__(self):
+        Default.__init__(self)
+        self.orig    = ""
+        self.result  = []
+        self.txt     = ""
+
+    def reply(self, txt):
+        "add text to the result"
+        self.result.append(txt)
 
 
 class TextWrap(textwrap.TextWrapper):

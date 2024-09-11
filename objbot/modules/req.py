@@ -77,15 +77,12 @@ p.s.
 """
 
 
-from objz import Commands
+from ..command import Commands
 
 
 def req(event):
     "reconsider"
     event.reply(__doc__)
-
-
-req.target = "cli"
 
 
 Commands.add(req)

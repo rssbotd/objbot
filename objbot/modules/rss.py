@@ -20,10 +20,14 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import quote_plus, urlencode
 
 
-from objx import Broker, Default, Object, construct, fmt, update
-from objw import find, fntime, last, sync
-from objt import Repeater, launch
-from objz import Commands, debug, laps, spl
+from ..broker  import Broker
+from ..command import Commands
+from ..default import Default
+from ..main    import debug, laps, spl
+from ..object  import Object, construct, fmt, update 
+from ..timer   import Repeater
+from ..thread  import launch
+from ..workdir import find, fntime, last, sync
 
 
 def init():

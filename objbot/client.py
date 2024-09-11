@@ -1,15 +1,14 @@
 # This file is placed in the Public Domain.
 # pylint: disable=W0613,W0718
 
+
 "client"
 
 
-from objr.reactor import Reactor
-from objx.broker  import Broker
-from objx.object  import Object
-
-
+from .broker  import Broker
 from .command import command
+from .object  import Object
+from .reactor import Reactor
 
 
 class Client(Reactor):

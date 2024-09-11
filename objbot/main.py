@@ -1,5 +1,6 @@
 # This file is placed in the Public Domain.
-# pylint: disable=R0903,E1102
+# pylint: disable=R0903,W0105,E1102
+
 
 "main"
 
@@ -11,9 +12,12 @@ import time
 import _thread
 
 
-from objw import Workdir
-from objx import Default
-from objt import launch
+from .workdir import Workdir
+from .default import Default
+from .thread  import launch
+
+
+"Config"
 
 
 class Config(Default):
@@ -26,6 +30,9 @@ class Config(Default):
         self.wdr     = os.path.expanduser(f"~/.{name}")
         self.pidfile = os.path.join(self.wdr, f"{name}.pid")
         Workdir.wdr  = self.wdr
+
+
+"Logging"
 
 
 class Logging:
@@ -43,6 +50,9 @@ def debug(txt):
             return
     if Logging.out:
         Logging.out(txt)
+
+
+"utilities"
 
 
 def enable(outer):
