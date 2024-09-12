@@ -92,6 +92,7 @@ class Thread(threading.Thread):
         try:
             self._result = func(*args)
         except Exception as ex:
+            time.sleep(1.0)
             later(ex)
 
 
