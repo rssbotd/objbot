@@ -15,7 +15,7 @@ from .main    import *
 from .object  import *
 from .reactor import *
 from .thread  import *
-from .workdir import * 
+from .workdir import *
 
 
 def __dir__():
