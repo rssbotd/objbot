@@ -23,7 +23,7 @@ Cfg.mod = "cmd,err,mod,irc,rss,thr"
 Cfg.user = getpass.getuser()
 
 
-def daemon(verbose=True):
+def daemon(verbose=False):
     "switch to background."
     pid = os.fork()
     if pid != 0:
@@ -54,7 +54,5 @@ def main():
 
 
 if __name__ == "__main__":
-    enable(print)
     wrap(main)
-    errors(print)
     
