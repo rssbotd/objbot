@@ -11,7 +11,7 @@ import time
 from ..command import Commands
 from ..main    import laps
 from ..object  import Object
-from ..workdir import find, sync, fntime
+from ..persist import find, sync, fntime
 
 
 class Log(Object):

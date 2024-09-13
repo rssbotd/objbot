@@ -6,16 +6,16 @@
 "interface"
 
 
-from . import broker, command, main, object, reactor, thread, workdir
+#from . import broker, command, main, object, persist, reactor, thread
 
 
 from .broker  import *
 from .command import *
 from .main    import *
 from .object  import *
+from .persist import *
 from .reactor import *
 from .thread  import *
-from .workdir import *
 
 
 def __dir__():
@@ -32,11 +32,11 @@ def __dir__():
         'Handler',
         'Logging',
         'Object',
+        'Perisst',
         'Reactor',
         'Repeater',
         'Thread',
         'Timer',
-        'Workdir',
         'boot',
         'broker',
         'banner',

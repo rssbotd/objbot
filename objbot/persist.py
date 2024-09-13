@@ -19,9 +19,9 @@ lock = _thread.allocate_lock()
 disklock = _thread.allocate_lock()
 
 
-class Workdir:
+class Persist:
 
-    "Workdir"
+    "Persistence"
 
     fqns = []
     wdr = ""
@@ -40,7 +40,7 @@ def long(name):
 
 def skel():
     "create directory,"
-    stor = os.path.join(Workdir.wdr, "store", "")
+    stor = os.path.join(Persist.wdr, "store", "")
     path = pathlib.Path(stor)
     path.mkdir(parents=True, exist_ok=True)
     return path
@@ -48,10 +48,10 @@ def skel():
 
 def store(pth=""):
     "return objects directory."
-    stor = os.path.join(Workdir.wdr, "store", "")
+    stor = os.path.join(Persist.wdr, "store", "")
     if not os.path.exists(stor):
         skel()
-    return os.path.join(Workdir.wdr, "store", pth)
+    return os.path.join(Persist.wdr, "store", pth)
 
 
 def types():
@@ -61,7 +61,7 @@ def types():
 
 def whitelist(clz):
     "whitelist classes."
-    Workdir.fqns.append(fqn(clz))
+    Persist.fqns.append(fqn(clz))
 
 
 "utilities"
@@ -181,7 +181,7 @@ def write(obj, pth):
 
 def __dir__():
     return (
-        'Workdir',
+        'Persist',
         'find',
         'fns',
         'fetch',

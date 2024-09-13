@@ -24,8 +24,8 @@ from ..broker  import Broker
 from ..command import Commands
 from ..main    import debug, laps, spl
 from ..object  import Default, Object, construct, fmt, update
+from ..persist import find, fntime, last, sync
 from ..thread  import Repeater, launch
-from ..workdir import find, fntime, last, sync
 
 
 def init():

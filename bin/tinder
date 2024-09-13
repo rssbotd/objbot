@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # This file is placed in the Public Domain.
-# pylint: disable=C,I,R,W0201,W0622,W0401,W0401,W0614,E0401,E1121,E0602
+# pylint: disable=C0413,W0401,W0614,W0622
 
 
 "tinder"
@@ -18,23 +18,16 @@ import _thread
 sys.path.insert(0, os.getcwd())
 
 
-from objr import *
-from objt import *
-from objw import *
-from objx import *
-from objz import *
+from objbot.face    import *
+from objbot.modules import face
 
 
-Cfg         = Default()
-Cfg.mod     = "cmd,err,mod,srv,thr"
+Cfg         = Config("objbot")
+Cfg.mod     = ",".join(modnames(face))
 Cfg.debug   = True
-Cfg.mod     = ""
 Cfg.name    = "tinder"
 Cfg.silent  = False
 Cfg.skip    = ["debug",]
-
-
-from objbot.modules import face
 
 
 face.rss.DEBUG = True
@@ -75,20 +68,12 @@ class CLI(Client):
 
     def __init__(self):
         Client.__init__(self)
+        Broker.register(self)
         self.register("command", command)
 
     def raw(self, txt):
         if "v" in Cfg.opts:
             print(txt)
-
-
-def consume(evts):
-    "wait for events."
-    res = []
-    for evt in evts:
-        evt.wait()
-        res.append(evt)
-    return res
 
 
 def payload(clt):
@@ -99,7 +84,7 @@ def payload(clt):
         for cmdd in cmdz:
             for ex in getattr(param, cmdd, [""]):
                 evt = Event()
-                evt.channel = "#otpcr"
+                evt.channel = "#objbot"
                 evt.orig = repr(clt)
                 evt.txt = cmdd + " " + ex
                 evt.type = "command"
@@ -127,29 +112,28 @@ def wrapped(function):
 
 def main():
     "main"
-    if "v" in Cfg.opts:
-        enable(print)
     Cfg.mod = ",".join(modnames(face))
     clt = CLI()
-    clt.start()
-    clt.threaded = "t" in Cfg.opts
+    launch(clt.start)
     thrs = []
     for _nr in range(nrs):
         thrs.append(launch(payload, clt))
     for thr in thrs:
         thr.join()
-    consume(events)
+    clt.ready()
 
 
 if __name__ == "__main__":
-    Workdir.wdr = ".test"
+    Persist.wdr = ".test"
     parse(Cfg, " ".join(sys.argv[1:]))
+    if "v" in Cfg.opts:
+        enable(print)
     if "f" in Cfg.opts:
-        if os.path.exists(Workdir.wdr):
-            shutil.rmtree(Workdir.wdr)
+        if os.path.exists(Persist.wdr):
+            shutil.rmtree(Persist.wdr)
     skel()
     nrs = Cfg.index or 1
-    nrcommand = len(Commands.cmds) or 1
+    NRCOMMAND = len(Commands.cmds) or 1
     if "p" in Cfg.opts:
         profile.runctx(main.__code__, globals(), locals())
     else:
@@ -158,6 +142,6 @@ if __name__ == "__main__":
     if "v" in Cfg.opts:
         endtime = time.time()
         lap = laps(endtime-STARTTIME)
-        percall = (endtime-STARTTIME)/(nrs*nrcommand)
-        print(f"{lap} {nrs} {nrcommand} {percall}")
+        percall = (endtime-STARTTIME)/(nrs*NRCOMMAND)
+        print(f"{lap} {nrs} {NRCOMMAND} {percall}")
     sys.exit()

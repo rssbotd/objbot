@@ -16,7 +16,7 @@ def popen(txt):
     "run text in popen."
     for line in os.popen(txt).readlines():
         if not line.strip() or line.startswith("Your") or line.startswith("---"):
-            continue 
+            continue
         print(line.rstrip())
         sys.stdout.flush()
 
@@ -25,4 +25,4 @@ if os.path.exists("bin/clean"):
     popen("bin/clean")
 
 
-popen(f"pylint objbot bin")
+popen("pylint objbot bin")

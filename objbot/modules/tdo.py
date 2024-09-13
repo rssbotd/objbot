@@ -11,7 +11,7 @@ import time
 from ..command import Commands
 from ..main    import laps
 from ..object  import Object
-from ..workdir import find, fntime, sync
+from ..persist import find, fntime, sync
 
 
 class NoDate(Exception):
