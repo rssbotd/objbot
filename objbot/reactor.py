@@ -89,6 +89,7 @@ class Reactor:
         self.queue.put_nowait(evt)
 
     def ready(self):
+        "wait till empty queue."
         while 1:
             if self.queue.qsize() == 0:
                 break
