@@ -17,9 +17,9 @@ sys.path.insert(0, os.getcwd())
 
 
 from objbot.broker  import Broker
-from objbot.command import command
-from objbot.main    import Config, debug, enable, forever, initer, modnames
-from objbot.main    import parse, spl
+from objbot.command import command, parse
+from objbot.main    import Config, debug, enable, forever, initer
+from objbot.main    import modnames, spl
 from objbot.object  import Default
 from objbot.reactor import Client, errors
 from objbot.thread  import launch
