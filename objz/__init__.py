@@ -14,6 +14,7 @@ import _thread
 
 from objr import Reactor
 from objt import launch
+from objw import Workdir
 from objx import Default
 
 
@@ -61,7 +62,7 @@ class Config(Default):
         self.name    = name
         self.wdr     = os.path.expanduser(f"~/.{name}")
         self.pidfile = os.path.join(self.wdr, f"{name}.pid")
-
+        Workdir.wdr  = self.wdr
 
 "event"
 

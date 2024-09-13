@@ -12,8 +12,7 @@ import sys
 
 
 from objt import errors, launch
-from objz import Config, forever, initer, pidfile
-from objz import privileges, wrap
+from objz import Config, enable, forever, initer, pidfile, privileges, wrap
 
 
 from objbot.modules import face
@@ -24,7 +23,7 @@ Cfg.mod = "cmd,err,mod,irc,rss,thr"
 Cfg.user = getpass.getuser()
 
 
-def daemon(verbose=False):
+def daemon(verbose=True):
     "switch to background."
     pid = os.fork()
     if pid != 0:
@@ -55,6 +54,7 @@ def main():
 
 
 if __name__ == "__main__":
+    enable(print)
     wrap(main)
     errors(print)
     
