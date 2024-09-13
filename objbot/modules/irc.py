@@ -16,13 +16,11 @@ import time
 import _thread
 
 
-from ..broker  import Broker
-from ..command import Commands, command
-from ..main    import Logging, debug
-from ..object  import Default, Object, edit, fmt, keys
-from ..persist import last, sync
-from ..reactor import Client
-from ..thread  import later, launch
+from objr import Client
+from objt import later, launch
+from objw import last, sync
+from objx import Default, Object, edit, fmt, keys
+from objz import Broker, Commands, Logging, command, debug
 
 
 Logging.filter = ["PING", "PONG", "PRIVMSG"]
@@ -35,7 +33,7 @@ def init():
     irc = IRC()
     irc.start()
     irc.events.ready.wait()
-    debug(f'started irc {fmt(irc.cfg, skip="password")}')
+    debug(f'{fmt(irc.cfg, skip="password")}')
     return irc
 
 

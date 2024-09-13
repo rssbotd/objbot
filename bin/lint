@@ -25,4 +25,4 @@ if os.path.exists("bin/clean"):
     popen("bin/clean")
 
 
-popen("pylint objbot bin")
+popen("pylint objbot objx objw objr objt objz bin")

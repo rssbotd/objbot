@@ -4,8 +4,8 @@
 "show errors"
 
 
-from ..command import Commands
-from ..thread  import Errors
+from objt import Errors
+from objz import Commands
 
 
 def err(event):

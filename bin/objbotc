@@ -16,13 +16,13 @@ import time
 sys.path.insert(0, os.getcwd())
 
 
-from objbot.broker  import Broker
-from objbot.command import command, parse
-from objbot.main    import Config, debug, enable, forever, initer
-from objbot.main    import modnames, spl
-from objbot.object  import Default
-from objbot.reactor import Client, errors
-from objbot.thread  import launch
+from objr import Client
+from objt import errors, launch
+from objx import Default
+from objz import Broker, Config, command, debug, enable
+from objz import enable, forever, initer, modnames, parse, spl
+
+
 from objbot.modules import face
 
 
@@ -99,6 +99,7 @@ def main():
             thr.join()
     csl = Console()
     csl.start()
+    forever()
 
 
 if __name__ == "__main__":

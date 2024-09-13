@@ -8,10 +8,9 @@
 import time
 
 
-from ..command import Commands
-from ..main    import laps
-from ..object  import Object
-from ..persist import find, fntime, sync
+from objw import find, fntime, sync
+from objx import Object
+from objz import Commands, laps
 
 
 class NoDate(Exception):

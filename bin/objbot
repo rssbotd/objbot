@@ -16,11 +16,13 @@ import termios
 sys.path.insert(0, os.getcwd())
 
 
-from objbot.broker  import Broker
-from objbot.command import Commands, command, parse
-from objbot.main    import Config, forever, modnames, wrap
-from objbot.object  import Default, fmt
-from objbot.reactor import Client, errors
+from objr import Client
+from objt import errors
+from objx import Default, fmt
+from objz import Broker, Commands, Config
+from objz import command, forever, modnames, parse, wrap
+
+
 from objbot.modules import face
 
 

@@ -7,8 +7,7 @@
 import time
 
 
-from ..command import Commands
-from ..main    import laps
+from objz import Commands, laps
 
 
 STARTTIME = time.time()
